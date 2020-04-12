@@ -25,6 +25,20 @@ $(document).ready(function(){
         /* sends message to server here */
         socket.send('User has connected');
     });
+
+    /* listening for a message */
+    socket.on('message', function(msg){
+        $("#messages").append('<li>'+msg+'</li>');
+    });
+
+    /* send a message */
+    $('#sendButton').on('click', function() {
+      /* sending text of my message input */
+        socket.send($('#myMessage').val());
+        /* clear out the message */
+        $('#myMessage').val('');
+    });
+
 });
 
 </script>
